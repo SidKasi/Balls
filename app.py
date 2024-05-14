@@ -11,12 +11,11 @@ screen = pg.display.set_mode((width, height))
 pg.display.set_caption("Ball")
 
 #base parameters
-maxRad = 30
+maxRad = 15
 gravity = np.array([0, -9.8])
-drag = 0.9
 
 
-balls = [Ball(rand.randint(5, maxRad),[rand.randint(maxRad, width - maxRad), rand.randint(maxRad, height - maxRad)], [rand.randint(0,3), rand.randint(0, 3)], [0, 0], (rand.randint(0, 255), rand.randint(0, 255), rand.randint(0, 255))) for _ in range(100)]
+balls = [Ball(rand.randint(5, maxRad),[rand.randint(maxRad, width - maxRad), rand.randint(maxRad, height - maxRad)], [rand.randint(1,5), rand.randint(1, 5)], [0, 0], (rand.randint(0, 255), rand.randint(0, 255), rand.randint(0, 255))) for _ in range(300)]
 
 running = True
 while running:
@@ -40,4 +39,4 @@ while running:
 
     pg.display.flip()
 
-    clock.tick(120)
+    clock.tick(200)

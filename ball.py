@@ -1,5 +1,6 @@
 import numpy as np
 import pygame as pg
+import math
 
 class Ball:
     def __init__(self, radius, x = [0, 0], v = [0, 0], a = [0, 0], color = (255, 0, 0)):
@@ -30,9 +31,12 @@ class Ball:
 
         for ball in balls:
             disp = self.x - ball.x
+
             if np.sum(disp**2) <= (self.r + ball.r)**2:
-                self.x += ((self.r/np.linalg.norm(disp)) * disp).astype(int)
-                ball.x -= ((ball.r/np.linalg.norm(disp)) * disp).astype(int)
+                #impact = 2 * ball.r ** 2 / (self.r ** 2 + ball.r ** 2) * np.dot(delta_v, disp) / np.dot(disp, disp)
+                correction = ((self.r + ball.r - np.linalg.norm(disp)) * disp/np.linalg.norm(disp) * 1).astype(int)
+                self.x += correction
+                ball.x -= correction
 
                 self.v[0] = -self.v[0]
                 self.v[1] = -self.v[1]
