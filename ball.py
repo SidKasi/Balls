@@ -15,7 +15,7 @@ class Ball:
     def render(self, screen):
         pg.draw.circle(screen, self.color, self.x, self.r)
 
-    def collide(self, width, height, balls, friction):
+    def collide(self, width, height, balls):
 
         if self.x[0] - self.r <= 0:
             self.x[0] += self.r - self.x[0]
@@ -51,8 +51,8 @@ class Ball:
                 selfNormVf = ((mSelf - mBall) * selfNormVi + 2 * mBall * ballNormVi)/(mSelf + mBall)
                 ballNormVf = ((mBall - mSelf) * ballNormVi + 2 * mSelf * selfNormVi)/(mSelf + mBall)
 
-                self.v = np.array([selfNormVf * axis[0] + selfTanV * tangent[0], selfNormVf * axis[1] + selfTanV * tangent[1]]) * friction
-                ball.v = np.array([ballNormVf * axis[0] + ballTanV * tangent[0], ballNormVf * axis[1] + ballTanV * tangent[1]]) * friction
+                self.v = np.array([selfNormVf * axis[0] + selfTanV * tangent[0], selfNormVf * axis[1] + selfTanV * tangent[1]])
+                ball.v = np.array([ballNormVf * axis[0] + ballTanV * tangent[0], ballNormVf * axis[1] + ballTanV * tangent[1]])
     def update(self):
             self.x += self.v
             self.v += self.a
