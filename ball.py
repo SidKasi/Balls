@@ -13,10 +13,20 @@ class Ball:
         pg.draw.circle(screen, self.color, self.x, self.r)
 
     def collide(self, width, height, balls):
-        if self.x[0] - self.r <= 0 or self.x[0] + self.r >= width:
+
+        if self.x[0] - self.r <= 0:
+            self.x[0] += self.r
             self.v[0] = -self.v[0]
-        if self.x[1] - self.r <= 0 or self.x[1] + self.r >= height:
+        if self.x[0] + self.r >= width:
+            self.x[0] -= self.r
+            self.v[0] = -self.v[0]
+        if self.x[1] - self.r <= 0:
+            self.x[1] += self.r
             self.v[1] = -self.v[1]
+        if self.x[1] + self.r >= height:
+            self.x[1] -= self.r
+            self.v[1] = -self.v[1]
+
 
         for ball in balls:
             disp = self.x - ball.x

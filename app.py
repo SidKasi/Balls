@@ -9,9 +9,14 @@ clock = pg.time.Clock()
 width, height = 800, 600
 screen = pg.display.set_mode((width, height))
 pg.display.set_caption("Ball")
-maxRad = 15
 
-balls = [Ball(rand.randint(maxRad, maxRad),[rand.randint(maxRad, width - maxRad), rand.randint(maxRad, height - maxRad)], [rand.randint(0,10), rand.randint(0, 10)], [0, 1], (rand.randint(0, 255), rand.randint(0, 255), rand.randint(0, 255))) for _ in range(10)]
+#base parameters
+maxRad = 30
+gravity = np.array([0, -9.8])
+drag = 0.9
+
+
+balls = [Ball(rand.randint(5, maxRad),[rand.randint(maxRad, width - maxRad), rand.randint(maxRad, height - maxRad)], [rand.randint(0,3), rand.randint(0, 3)], [0, 0], (rand.randint(0, 255), rand.randint(0, 255), rand.randint(0, 255))) for _ in range(100)]
 
 running = True
 while running:
@@ -19,12 +24,6 @@ while running:
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
-        if event.type == pg.KEYDOWN:
-            if event.key == 32:
-                #ball1.v += np.array([0, -10])
-                pass
-            else:
-                running = False
 
     for i in range(len(balls)):
         ballsCopy = balls.copy()
@@ -41,4 +40,4 @@ while running:
 
     pg.display.flip()
 
-    clock.tick(60)
+    clock.tick(120)
