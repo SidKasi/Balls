@@ -11,7 +11,6 @@ class Ball:
         self.x = np.array(x)
         self.v = np.array(v)
         self.a = np.array(a)
-
     def render(self, screen):
         pg.draw.circle(screen, self.color, self.x, self.r)
 
@@ -53,9 +52,9 @@ class Ball:
 
                 self.v = np.array([selfNormVf * axis[0] + selfTanV * tangent[0], selfNormVf * axis[1] + selfTanV * tangent[1]])
                 ball.v = np.array([ballNormVf * axis[0] + ballTanV * tangent[0], ballNormVf * axis[1] + ballTanV * tangent[1]])
-    def update(self):
+    def updateFluid(self):
             self.x += self.v
             self.v += self.a
-
+            self.v += self.g
 
 
