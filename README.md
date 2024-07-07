@@ -1,4 +1,2 @@
 # Balls
-Simple Physics Simulation
-
-Liquid is not working at the moment
+simple physics simulation with momentum-based collisions
