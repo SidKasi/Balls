@@ -52,9 +52,8 @@ class Ball:
 
                 self.v = np.array([selfNormVf * axis[0] + selfTanV * tangent[0], selfNormVf * axis[1] + selfTanV * tangent[1]])
                 ball.v = np.array([ballNormVf * axis[0] + ballTanV * tangent[0], ballNormVf * axis[1] + ballTanV * tangent[1]])
-    def updateFluid(self):
+    def update(self):
             self.x += self.v
             self.v += self.a
-            self.v += self.g
 
 

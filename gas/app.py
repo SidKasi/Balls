@@ -2,22 +2,28 @@ import numpy as np
 import pygame as pg
 from ball import Ball
 import random as rand
+from settings import getSettings
+
+settings = getSettings()
 
 pg.init()
 clock = pg.time.Clock()
 # Screen dimensions and settings
 width, height = 1600, 900
 screen = pg.display.set_mode((width, height))
-pg.display.set_caption("Ball")
+pg.display.set_caption("Gas")
 
 #base parameters
 maxRad = 30
 maxVel = 5
-gravity = np.array([0, 9.8]) # not yet implemented
 
-shrinking = False
+shrinking = settings[1]
 
-balls = [Ball(rand.randint(10, maxRad),[rand.randint(maxRad, width - maxRad) * 1.0, rand.randint(maxRad, height - maxRad) * 1.0], [rand.randint(-maxVel,maxVel) * 1.0, rand.randint(1, 1) * 1.0], [0.0, 0.0], (rand.randint(0, 255), rand.randint(0, 255), rand.randint(0, 255))) for _ in range(200)]
+balls = [Ball(rand.randint(10, maxRad),
+              [rand.randint(maxRad, width - maxRad) * 1.0, rand.randint(maxRad, height - maxRad) * 1.0],
+              [rand.randint(-maxVel,maxVel) * 1.0, rand.randint(1, 1) * 1.0],
+              [0.0, 0.0],
+              (rand.randint(0, 255), rand.randint(0, 255), rand.randint(0, 255))) for _ in range(settings[0])]
 
 running = True
 while running:
@@ -27,8 +33,8 @@ while running:
             running = False
 
     if shrinking:
-        width -= 0.1
-        height -= 0.1
+        width -= 0.2
+        height -= 0.2
     for i in range(len(balls)):
         ballsCopy = balls.copy()
         ballsCopy.pop(i)
